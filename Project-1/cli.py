@@ -16,12 +16,19 @@ def parse(filepath: str):
     dict = {}
     name = []
     value = []
+    race = ""
 
+    # open file and fill the variables via python slicing
     with open(file=filepath, mode="r") as file:
-        for lines in file:
+        for index, lines in enumerate(file):
             strip = lines.strip()
-            name.append(strip[:3])
-            value.append(strip[3:])
+            if index == 0:
+                race = lines
+            else:
+                name.append(strip[:3])
+                value.append(strip[3:])
+
+    value = list(map(float, value))
 
     for key, value in zip(name, value):
         if key not in dict:
@@ -31,4 +38,7 @@ def parse(filepath: str):
     return dict
 
 
-print(parse(args.filename))
+myfile = parse(R"D:\Scripts\uni\lbu-assignment-specs\Project-1\lap_times_1.txt")
+
+mylist = myfile
+print(sum(mylist["SAI"]))

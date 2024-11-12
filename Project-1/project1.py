@@ -6,6 +6,7 @@ value = []
 with open(
     file=r"D:\Scripts\uni\lbu-assignment-specs\Project-1\lap_times_1.txt", mode="r"
 ) as file:
+    # file = file.readlines()
     for lines in file:
         strip = lines.strip()
         name.append(strip[:3])
