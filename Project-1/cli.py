@@ -1,4 +1,5 @@
 import argparse
+from tabulate import tabulate
 
 parser = argparse.ArgumentParser(
     prog="Grand Prix Timings Board",
@@ -13,7 +14,7 @@ args = parser.parse_args()
 
 
 def parse(filepath: str):
-    dict = {}
+    lap_times = {}
     name = []
     value = []
     race = ""
@@ -31,14 +32,13 @@ def parse(filepath: str):
     value = list(map(float, value))
 
     for key, value in zip(name, value):
-        if key not in dict:
-            dict[key] = []
-        dict[key].append(value)
+        if key not in lap_times:
+            lap_times[key] = []
+        lap_times[key].append(value)
 
-    return dict
+    return lap_times
 
 
-myfile = parse(R"D:\Scripts\uni\lbu-assignment-specs\Project-1\lap_times_1.txt")
+myfile = parse(args.filename)
 
-mylist = myfile
-print(sum(mylist["SAI"]))
+tabulate = print(tabulate(myfile, headers="keys", tablefmt="grid", numalign="left"))
