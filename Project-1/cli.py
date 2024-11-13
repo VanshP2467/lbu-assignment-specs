@@ -39,6 +39,11 @@ def parse(filepath: str):
     return lap_times
 
 
-myfile = parse(args.filename)
+myfile = parse(R"D:\Scripts\uni\lbu-assignment-specs\Project-1\lap_times_1.txt")
 
 tabulate = print(tabulate(myfile, headers="keys", tablefmt="grid", numalign="left"))
+
+sorted_values = []
+for keys, values in myfile.items():
+    sorted_values = values.sort()
+    print(f"Fastest for {keys} is {values[0]}")
