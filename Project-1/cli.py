@@ -35,6 +35,7 @@ def parse(filepath: str):
 
     except FileNotFoundError:
         print("File not found. Please check the path and try again")
+        exit()
 
     with open(file=filepath, mode="r") as file:
         for index, lines in enumerate(file):
