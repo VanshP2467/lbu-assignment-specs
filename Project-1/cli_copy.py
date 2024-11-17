@@ -74,11 +74,21 @@ for keys, value in myfile.items():
 
 max_rows = max(len(value) for value in myfile.values())
 
+
 for i in range(max_rows):
-    row = []
-    for values in myfile.values():
-        # Add value if it exists; otherwise, add an empty string
-        row.append(str(values[i]) if i < len(values) else "")
+    row = []  # new list with string values so that rich can render it
+    for key, values in myfile.items():
+        # highlighting the fastest and slowest laps
+        maxx = max(values)
+        minn = min(values)
+        if values[i] == maxx if i < len(values) else None:
+            row.append(f"[bold red]{str(values[i]) if i < len(values) else ""}")
+
+        elif values[i] == minn if i < len(values) else None:
+            row.append(f"[bold green]{str(values[i]) if i < len(values) else ""}")
+
+        else:
+            row.append(str(values[i]) if i < len(values) else "")
     table.add_row(*row)
 
 
