@@ -1,8 +1,6 @@
 from rich.console import Console
 from rich.table import Table
 from rich import box
-from rich.style import Style
-from tabulate import tabulate
 
 if __name__ == "__main__":
     import argparse
@@ -81,14 +79,20 @@ for i in range(max_rows):
         # highlighting the fastest and slowest laps
         maxx = max(values)
         minn = min(values)
+        avg = sum(values) / len(values)
+
         if values[i] == maxx if i < len(values) else None:
             row.append(f"[bold red]{str(values[i]) if i < len(values) else ""}")
 
         elif values[i] == minn if i < len(values) else None:
             row.append(f"[bold green]{str(values[i]) if i < len(values) else ""}")
 
+        elif i == len(values):  # if you reach the end of list, append the avg value
+            row.append(f"AVG:[bold uu]{avg:.3f}")
+
         else:
             row.append(str(values[i]) if i < len(values) else "")
+
     table.add_row(*row)
 
 
