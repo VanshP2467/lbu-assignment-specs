@@ -16,6 +16,12 @@ if __name__ == "__main__":
         type=str,
         nargs="?",
     )
+    parser.add_argument(
+        "-sort",
+        help="Create sorted tables (disabled by default)",
+        action="store_true",
+        default=False,
+    )
 
     args = parser.parse_args()
 
@@ -58,9 +64,8 @@ def parse(filepath: str):
         return lap_times
 
 
-# myfile = parse(R"D:\Scripts\uni\lbu-assignment-specs\Project-1\lap_times_1.txt")
 myfile = parse(args.filename)
-# tabulate = print(tabulate(myfile, headers="keys", tablefmt="grid", numalign="left"))
+
 
 console = Console()
 
@@ -77,6 +82,8 @@ for i in range(max_rows):
     row = []  # new list with string values so that rich can render it
     for key, values in myfile.items():
         # highlighting the fastest and slowest laps
+        if args.sort is True:
+            values = sorted(values)
         maxx = max(values)
         minn = min(values)
         avg = sum(values) / len(values)
@@ -97,7 +104,3 @@ for i in range(max_rows):
 
 
 console.print(table)
-# sorted_values = []
-# for keys, values in myfile.items():
-#     sorted_values = values.sort()
-#     print(f"Fastest lap time for {keys} is {values[0]}")
