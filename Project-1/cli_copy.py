@@ -1,6 +1,7 @@
 from rich.console import Console
 from rich.table import Table
 from rich import box
+from rich import print as rprint
 
 if __name__ == "__main__":
     import argparse
@@ -104,3 +105,14 @@ for i in range(max_rows):
 
 
 console.print(table)
+
+
+def find_fastest(input: dict):
+    lowest_key, lowest_value = min(input.items(), key=lambda item: min(item[1]))
+
+    rprint(
+        f"The fastest driver is [bold green]{lowest_key}[/bold green] with the time [bold green]{lowest_value[0]}"
+    )
+
+
+find_fastest(myfile)
