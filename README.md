@@ -1,3 +1,5 @@
+# NOTE: THIS IS **NOT** MY FINAL PROJECT SUBMISSION, MY FINAL SUBMISSION IS MAINTAINED AT THE UNIVERSITY'S PRIVATE REPO
+
 # Computer Programming Assignments
 
 These are the two project tasks for the *Programming Portfolio*. 
